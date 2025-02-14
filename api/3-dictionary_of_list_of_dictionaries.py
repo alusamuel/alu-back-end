@@ -10,48 +10,24 @@ import json
 import requests
 
 if __name__ == "__main__":
-
-    # URLs to get users and todos data
     users_url = "https://jsonplaceholder.typicode.com/users"
-    
-    # Fetch users data
-    users_response = requests.get(users_url)
-    if users_response.status_code != 200:
-        print(f"Error: Users data could not be fetched.")
-        exit(1)
+    todos_url = "https://jsonplaceholder.typicode.com/todos"
 
-    users_data = users_response.json()
+    users = requests.get(users_url).json()
+    todos = requests.get(todos_url).json()
 
-    # Prepare the dictionary to store all tasks by employee
-    all_tasks = {}
+    user_dict = {user['id']: user['username'] for user in users}
 
-    # Loop through each user and get their tasks
-    for user in users_data:
-        user_id = user['id']
-        username = user['username']
-        todos_url = (
-            f"https://jsonplaceholder.typicode.com/users/{user_id}/todos"
-        )
+    result = {}
+    for todo in todos:
+        user_id = todo['userId']
+        if str(user_id) not in result:
+            result[str(user_id)] = []
+        result[str(user_id)].append({
+            "username": user_dict[user_id],
+            "task": todo['title'],
+            "completed": todo['completed']
+        })
 
-        # Fetch todos data for each user
-        todos_response = requests.get(todos_url)
-        todos_data = todos_response.json()
-
-        # Store tasks for the current user in the dictionary
-        tasks = [
-            {
-                "username": username,
-                "task": task['title'],
-                "completed": task['completed']
-            }
-            for task in todos_data
-        ]
-
-        # Add the tasks list to the dictionary with user_id as the key
-        all_tasks[user_id] = tasks
-
-    # Write the JSON data to the file
     with open("todo_all_employees.json", 'w') as jsonfile:
-        json.dump(all_tasks, jsonfile, indent=4)
-
-    print(f"JSON file todo_all_employees.json has been created.")
+        json.dump(result, jsonfile)
