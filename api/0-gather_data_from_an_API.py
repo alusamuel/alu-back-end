@@ -19,8 +19,12 @@ import sys
 
 def fetch_todo_list(employee_id):
     """Fetch and display an employee's TODO list progress."""
-    url_user = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    url_todos = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+    url_user = (
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    )
+    url_todos = (
+        f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+    )
 
     try:
         user_response = requests.get(url_user)
