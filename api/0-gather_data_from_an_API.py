@@ -20,12 +20,18 @@ import sys
 def fetch_todo_list(employee_id):
     """Fetch and display an employee's TODO list progress."""
     url_user = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    url_todos = (
-        f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
-    )
+    url_todos = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
-    user_response = requests.get(url_user)
-    todos_response = requests.get(url_todos)
+    try:
+        user_response = requests.get(url_user)
+        todos_response = requests.get(url_todos)
+
+        user_response.raise_for_status()
+        todos_response.raise_for_status()
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        sys.exit(1)
 
     user = user_response.json()
     todos = todos_response.json()
