@@ -43,13 +43,9 @@ if __name__ == "__main__":
     with open(f"{employee_id}.csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
+        table_title = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
         # Write the header of the CSV file
-        writer.writerow([
-            "USER_ID", 
-            "USERNAME", 
-            "TASK_COMPLETED_STATUS", 
-            "TASK_TITLE"
-        ])
+        writer.writerow(table_title)
 
         # Write the tasks for the user
         for task in todos_data:
