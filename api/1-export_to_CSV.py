@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script can export a CSV file containing task details for a specific employee.
+This script can export a CSV file.
 
 Needs:
     - The requests module
@@ -44,11 +44,14 @@ if __name__ == "__main__":
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
         # Write the header of the CSV file
-        writer.writerow([
+        writer.writerow(
+        [
             "USER_ID", 
             "USERNAME", 
             "TASK_COMPLETED_STATUS", 
-            "TASK_TITLE"])
+            "TASK_TITLE"
+        ]
+        )
 
         # Write the tasks for the user
         for task in todos_data:
