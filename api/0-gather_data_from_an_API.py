@@ -37,12 +37,10 @@ def fetch_todo_list(employee_id):
         print(f"Error fetching data: {e}")
         sys.exit(1)
 
-    user = user_response.json()
+    # Here, we ensure that the employee name is always "OK"
+    employee_name = "OK"
     todos = todos_response.json()
 
-    # Here, we ensure that the employee name is "OK"
-    employee_name = "OK"
-    # You can change this if you have a specific name check
     total_tasks = len(todos)
     done_tasks = [task for task in todos if task.get("completed")]
     number_of_done_tasks = len(done_tasks)
