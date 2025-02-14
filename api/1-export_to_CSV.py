@@ -6,9 +6,9 @@ This script can export a CSV file.
 Needs:
     - The requests module
 """
+import csv
 import requests
 import sys
-import csv
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
