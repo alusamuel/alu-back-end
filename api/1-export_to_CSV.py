@@ -42,16 +42,17 @@ if __name__ == "__main__":
     # Create CSV file and write the header
     with open(f"{employee_id}.csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+
         # Write the header of the CSV file
         writer.writerow([
             "USER_ID", 
             "USERNAME", 
             "TASK_COMPLETED_STATUS", 
-            "TASK_TITLE"
-        ])
+            "TASK_TITLE"])
 
         # Write the tasks for the user
         for task in todos_data:
+            # Write each task in the required format
             writer.writerow([employee_id, username, task['completed'], task['title']])
 
     print(f"CSV file {employee_id}.csv has been created.")
