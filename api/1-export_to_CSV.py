@@ -39,13 +39,10 @@ if __name__ == "__main__":
     todos_response = requests.get(todos_url)
     todos_data = todos_response.json()
 
+
     # Create CSV file and write the header
     with open(f"{employee_id}.csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-
-        title = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-        # Write the header of the CSV file
-        writer.writerow(title)
 
         # Write the tasks for the user
         for task in todos_data:
