@@ -21,7 +21,9 @@ if __name__ == "__main__":
 
     # URLs to get user and todos data
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    todos_url = (
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    )
 
     # Fetch user data
     user_response = requests.get(user_url)
@@ -41,7 +43,12 @@ if __name__ == "__main__":
     with open(f"{employee_id}.csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         # Write the header of the CSV file
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        writer.writerow([
+            "USER_ID", 
+            "USERNAME", 
+            "TASK_COMPLETED_STATUS", 
+            "TASK_TITLE"
+        ])
 
         # Write the tasks for the user
         for task in todos_data:
