@@ -43,13 +43,14 @@ if __name__ == "__main__":
     with open(f"{employee_id}.csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
-        table_title = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
+        title = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
         # Write the header of the CSV file
-        writer.writerow(table_title)
+        writer.writerow(title)
 
         # Write the tasks for the user
         for task in todos_data:
             # Write each task in the required format
-            writer.writerow([employee_id, username, task['completed'], task['title']])
+            rows = [employee_id, username, task['completed'], task['title']]
+            writer.writerow(rows)
 
     print(f"CSV file {employee_id}.csv has been created.")
