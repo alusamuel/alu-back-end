@@ -1,4 +1,17 @@
 #!/usr/bin/python3
+
+"""
+This script gets and shows an employee's TODO list progress using a REST API.
+
+How to use:
+    Run: python3 script.py <employee_id>
+
+Arguments:
+    employee_id (int): The ID of the employee whose TODO list you want to see.
+
+Needs:
+    - The requests module
+"""
 import requests
 import sys
 
