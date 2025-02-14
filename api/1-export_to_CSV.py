@@ -17,7 +17,9 @@ if __name__ == "__main__":
 
     employee_id = sys.argv[1]
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    todos_url = (
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    )
 
     user_response = requests.get(user_url)
     if user_response.status_code != 200:
@@ -37,4 +39,3 @@ if __name__ == "__main__":
             writer.writerow(
                 [employee_id, username, task['completed'], task['title']]
             )
-
